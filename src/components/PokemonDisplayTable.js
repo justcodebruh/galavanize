@@ -1,40 +1,47 @@
-import  React  from "react";
-import  SearchBar  from './SearchBar';
-import  PokemonList  from './PokemonList';
-
+import React from "react";
+import SearchBar from "./SearchBar";
+import PokemonList from "./PokemonList";
 
 class PokemonDisplayTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      habitatSearchText: '',
-      listOfPokemonSpecies: []
+      habitatSearchText: "",
+      listOfPokemonSpecies: [],
+      error: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  };
+    this.handleError = this.handleError.bind(this);
+  }
 
   handleChange(habitatSearchText) {
-    this.setState({habitatSearchText: habitatSearchText});
+    this.setState({ habitatSearchText: habitatSearchText });
   }
 
   handleSubmit(listOfPokemonSpecies) {
-    this.setState({listOfPokemonSpecies: listOfPokemonSpecies});
+    this.setState({ listOfPokemonSpecies: listOfPokemonSpecies });
+    this.setState({ isLoading: false });
   }
 
-
+  handleError(error) {
+    this.setState({ error: error });
+    this.setState({ listOfPokemonSpecies: [] });
+  }
 
   render() {
     return (
       <div>
-        <SearchBar 
+        <SearchBar
           habitatSearchText={this.state.habitatSearchText}
           onHandleSubmit={this.handleSubmit}
           onHandleChange={this.handleChange}
+          onHandleError={this.handleError}
         />
-        <PokemonList 
+        <PokemonList
           listOfPokemonSpecies={this.state.listOfPokemonSpecies}
+          isLoading={this.state.isLoading}
         />
       </div>
     );
