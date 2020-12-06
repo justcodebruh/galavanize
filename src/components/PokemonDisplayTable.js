@@ -26,7 +26,6 @@ class PokemonDisplayTable extends React.Component {
   }
 
   handleError(error) {
-    this.setState({ error: error });
     this.setState({ listOfPokemonSpecies: [] });
   }
 

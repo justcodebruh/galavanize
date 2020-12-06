@@ -3,7 +3,7 @@ import Pokemon from "./Pokemon";
 
 class PokemonList extends React.Component {
   render() {
-    const shownListOfPokemon =
+    const shownListOfPokemonSpecies =
       this.props.listOfPokemonSpecies.length > 0 ? (
         this.props.listOfPokemonSpecies.map((pokemon, index) => (
           <Pokemon key={index} name={pokemon.name} />
@@ -12,7 +12,7 @@ class PokemonList extends React.Component {
         <h1>No Pokemon found...</h1>
       );
 
-    return <ul>{shownListOfPokemon}</ul>;
+    return <ul>{shownListOfPokemonSpecies}</ul>;
   }
 }
 
